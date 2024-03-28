@@ -65985,7 +65985,7 @@ if (endpoint) {
   console.log(`==========> 当前 OSS Endpoint: ${endpoint}`);
 }
 
-const fileRelativePathRegExpPattern = `${sourceDir}/(.*)$`;
+const fileRelativePathRegExpPattern = `${sourceDir}${path.sep}(.*)$`;
 
 uploadToOss();
 

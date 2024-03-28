@@ -8,6 +8,9 @@ Upload files to aliyun oss.
 
 **Required** The path of the source dir.
 
+> You do not need to add a slash `/` at the end of the path.
+> When running under a Windows runner, the path needs to be changed to Windows-style.
+
 ### `dest-dir`
 
 **Required** The path of the dest dir.

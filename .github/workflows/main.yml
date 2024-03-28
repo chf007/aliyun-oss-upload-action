@@ -2,12 +2,34 @@ name: Aliyun OSS Upload Action Test
 on: [push]
 
 jobs:
-  upload-files-to-aliyun-oss:
+  upload-likeunix-files-to-aliyun-oss:
+    if: matrix.os != 'windows-latest'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-    name: 上传文件至 OSS 测试
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    name: 上传类 Unix 系统文件至 OSS 测试
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Upload
+        uses: ./
+        env:
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+        with:
+          source-dir: 'dist'
+          dest-dir: 'apps/app-test/v1'
+          bucket: 'file-s01'
+          region: 'oss-cn-shenzhen'
+
+  upload-windows-files-to-aliyun-oss:
+    if: matrix.os == 'windows-latest'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    name: 上传 Window 系统文件至 OSS 测试
     steps:
       - name: Checkout
         uses: actions/checkout@v4
