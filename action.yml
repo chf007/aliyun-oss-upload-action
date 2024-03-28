@@ -1,4 +1,4 @@
-name: Aliyun OSS Upload Action
+name: aliyun-oss-upload-action
 description: 'Upload files to aliyun oss'
 author: 'chf007 <chf007server@gmail.com>'
 branding:
