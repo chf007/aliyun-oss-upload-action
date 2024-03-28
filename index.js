@@ -41,10 +41,10 @@ if (!region) {
 }
 
 const ossOpt = {
-  region: ossCfg[appEnv].region,
-  accessKeyId: secretId,
-  accessKeySecret: secretKey,
-  bucket: ossCfg[appEnv].bucketName,
+  region,
+  accessKeyId,
+  accessKeySecret,
+  bucket,
 };
 
 if (endpoint) {
