@@ -59,6 +59,8 @@ if (endpoint) {
   console.log(`==========> 当前 OSS Endpoint: ${endpoint}`);
 }
 
+const fileRelativePathRegExpPattern = `${sourceDir}/(.*)$`;
+
 uploadToOss();
 
 function uploadToOss() {
@@ -80,7 +82,9 @@ function uploadToOss() {
       files.map((filePath) => {
         return new Promise((resolve, reject) => {
 
-          const key = `${filePath}`;
+          const uploadFileRelativePath = filePath.match(new RegExp(fileRelativePathRegExpPattern))[1];
+
+          const key = `${destDir}/${uploadFileRelativePath}`;
 
           console.log(`开始上传：${filePath} --------> ${key}`);
 
