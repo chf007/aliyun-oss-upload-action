@@ -6,13 +6,13 @@ Upload files to aliyun oss.
 
 ### `source-dir`
 
-**Required** The path of the source dir.
+The path of the source dir.
 
 > You do not need to add a slash `/` at the end of the path.
 
 ### `dest-dir`
 
-**Required** The path of the dest dir.
+The path of the dest dir.
 
 > You do not need to add a slash `/` at the end of the path.
 
