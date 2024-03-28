@@ -65958,16 +65958,6 @@ if (!accessKeySecret) {
   process.exit(1);
 }
 
-if (!sourceDir) {
-  core.setFailed('请配置 source-dir ❌');
-  process.exit(1);
-}
-
-if (!destDir) {
-  core.setFailed('请配置 dest-dir ❌');
-  process.exit(1);
-}
-
 if (!bucket) {
   core.setFailed('请配置 bucket ❌');
   process.exit(1);
@@ -65997,7 +65987,7 @@ if (endpoint) {
   console.log(`==========> 当前 OSS Endpoint: ${endpoint}`);
 }
 
-const fileRelativePathRegExpPattern = `${sourceDir}/(.*)$`;
+const fileRelativePathRegExpPattern = `${sourceDir === './' || sourceDir === '/' ? '' : sourceDir}/(.*)$`;
 
 uploadToOss();
 
