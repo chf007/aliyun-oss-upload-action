@@ -15,6 +15,8 @@ Upload files to aliyun oss.
 
 **Required** The path of the dest dir.
 
+> You do not need to add a slash `/` at the end of the path.
+
 ### `bucket`
 
 **Required** The name of the aliyun oss bucket.
