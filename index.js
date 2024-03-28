@@ -19,6 +19,7 @@ const endpoint = core.getInput('endpoint');
 
 if (os.type() === 'Windows_NT') {
   core.setFailed('暂不支持在 Windows 环境中执行 ❌');
+  process.exit(1);
 }
 
 if (!accessKeyId) {
