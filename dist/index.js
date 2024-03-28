@@ -65924,6 +65924,7 @@ module.exports = JSON.parse('{"name":"urllib","version":"2.41.0","publishConfig"
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const os = __nccwpck_require__(2037);
 const fs = __nccwpck_require__(7147);
 const path = __nccwpck_require__(1017);
 const dir = __nccwpck_require__(8557);
@@ -65941,6 +65942,10 @@ const destDir = core.getInput('dest-dir');
 const bucket = core.getInput('bucket');
 const region = core.getInput('region');
 const endpoint = core.getInput('endpoint');
+
+if (os.type() === 'Windows_NT') {
+  core.setFailed('暂不支持在 Windows 环境中执行 ❌');
+}
 
 if (!accessKeyId) {
   core.setFailed('必须设置环境变量 OSS_ACCESS_KEY_ID ❌');
@@ -65985,7 +65990,7 @@ if (endpoint) {
   console.log(`==========> 当前 OSS Endpoint: ${endpoint}`);
 }
 
-const fileRelativePathRegExpPattern = `${sourceDir}${path.sep}(.*)$`;
+const fileRelativePathRegExpPattern = `${sourceDir}/(.*)$`;
 
 uploadToOss();
 

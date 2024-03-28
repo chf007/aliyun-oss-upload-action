@@ -1,3 +1,4 @@
+const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const dir = require('node-dir');
@@ -15,6 +16,10 @@ const destDir = core.getInput('dest-dir');
 const bucket = core.getInput('bucket');
 const region = core.getInput('region');
 const endpoint = core.getInput('endpoint');
+
+if (os.type() === 'Windows_NT') {
+  core.setFailed('暂不支持在 Windows 环境中执行 ❌');
+}
 
 if (!accessKeyId) {
   core.setFailed('必须设置环境变量 OSS_ACCESS_KEY_ID ❌');
@@ -59,7 +64,7 @@ if (endpoint) {
   console.log(`==========> 当前 OSS Endpoint: ${endpoint}`);
 }
 
-const fileRelativePathRegExpPattern = `${sourceDir}${path.sep}(.*)$`;
+const fileRelativePathRegExpPattern = `${sourceDir}/(.*)$`;
 
 uploadToOss();
 
