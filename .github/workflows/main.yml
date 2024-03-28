@@ -1,0 +1,23 @@
+name: Aliyun OSS Upload Action Test
+on: [push]
+
+jobs:
+  upload-files-to-aliyun-oss:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    name: 上传文件至 OSS 测试
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Upload
+        uses: ./
+        env:
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+        with:
+          source-dir: 'dist'
+          dest-dir: 'apps/app-test/v1'
+          bucket: 'file-s01'
+          region: 'oss-cn-shenzhen'

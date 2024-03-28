@@ -1,0 +1,26 @@
+name: Aliyun OSS Upload Action
+description: 'Upload files to aliyun oss'
+author: 'chf007 <chf007server@gmail.com>'
+branding:
+  icon: 'upload-cloud'
+  color: 'orange'
+inputs:
+  source-dir:
+    description: '来源文件夹'
+    required: true
+  dest-dir:
+    description: '目标文件夹'
+    required: true
+  bucket:
+    description: '桶名'
+    required: true
+  region:
+    description: '地域名'
+    required: true
+  endpoint:
+    description: '端点'
+    required: false
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
