@@ -65950,26 +65950,32 @@ if (os.type() === 'Windows_NT') {
 
 if (!accessKeyId) {
   core.setFailed('必须设置环境变量 OSS_ACCESS_KEY_ID ❌');
+  process.exit(1);
 }
 
 if (!accessKeySecret) {
   core.setFailed('必须设置环境变量 OSS_ACCESS_KEY_SECRET ❌');
+  process.exit(1);
 }
 
 if (!sourceDir) {
   core.setFailed('请配置 source-dir ❌');
+  process.exit(1);
 }
 
 if (!destDir) {
   core.setFailed('请配置 dest-dir ❌');
+  process.exit(1);
 }
 
 if (!bucket) {
   core.setFailed('请配置 bucket ❌');
+  process.exit(1);
 }
 
 if (!region) {
   core.setFailed('请配置 region ❌');
+  process.exit(1);
 }
 
 const ossOpt = {
@@ -66004,6 +66010,7 @@ function uploadToOss() {
       } else {
         core.setFailed(`dir.files error: ${err}`);
       }
+      process.exit(1);
     }
 
     console.log(`==========> 开始上传文件到 OSS，共 ${files.length} 个文件`);
@@ -66046,6 +66053,7 @@ function uploadToOss() {
             console.log(`==========> ${item.key} 上传成功~ 🎉`);
           }).catch(error2 => {
             core.setFailed(`${item.key} 重新上传失败！❌ error: ${error2}`);
+            process.exit(1);
           });
         }
 
